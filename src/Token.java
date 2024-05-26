@@ -47,4 +47,6 @@ public class Token {
     public static final int CASE = 44;
     public static final int CLEAR = 45;
     public static final int WHILE = 46;
+    public static final int PULA_LINHA = 47;
+    public static final int MATRIZ = 48;
 }

@@ -27,6 +27,23 @@ public class RegrasSintaticas {
         }
     }
 
+    boolean CLEAR(ArrayList<ClassificacaoLexica> VetorAnaliseLexica){
+
+        if(VetorAnaliseLexica.get(0).Token == Token.CLEAR) return true;
+        else {
+            return false;
+        }
+    }
+
+    boolean DO(ArrayList<ClassificacaoLexica> VetorAnaliseLexica){
+
+        if(VetorAnaliseLexica.get(0).Token == Token.DO)
+            return true;
+        else {
+            return false;
+        }
+    }
+
 
     boolean DECLARACAO_VARIAVEL(ArrayList<ClassificacaoLexica> VetorAnaliseLexica){
 
@@ -50,10 +67,30 @@ public class RegrasSintaticas {
             return true;
         }
 
+        if((VetorAnaliseLexica.get(0).Token == Token.INT) && (VetorAnaliseLexica.get(1).Token == Token.MATRIZ)){
+            return true;
+        }
+
         if((VetorAnaliseLexica.get(0).Token == Token.FLOAT) && (VetorAnaliseLexica.get(1).Token == Token.VARIAVEL) || (VetorAnaliseLexica.get(0).Token == Token.FLOAT) && (VetorAnaliseLexica.get(1).Token == Token.VARIAVEL)
                 && (VetorAnaliseLexica.get(2).Token == Token.ATRIBUICAO) && (VetorAnaliseLexica.get(3).Token == Token.NUMERO_DECIMAL)) {
             return true;
-        } else return false;
+        }
+
+        if((VetorAnaliseLexica.get(0).Token == Token.VARIAVEL) && (VetorAnaliseLexica.get(1).Token == Token.ATRIBUICAO) && (VetorAnaliseLexica.get(2).Token == Token.VARIAVEL) && (VetorAnaliseLexica.get(3).Token == Token.MULTIPLICACAO)
+                && (VetorAnaliseLexica.get(4).Token == Token.VARIAVEL)) {
+            return true;
+        }
+
+        if((VetorAnaliseLexica.get(0).Token == Token.VARIAVEL) && (VetorAnaliseLexica.get(1).Token == Token.ATRIBUICAO) && (VetorAnaliseLexica.get(2).Token == Token.NUMERO_DECIMAL)) {
+            return true;
+        }
+
+        if((VetorAnaliseLexica.get(0).Token == Token.VARIAVEL) && (VetorAnaliseLexica.get(1).Token == Token.ATRIBUICAO) && (VetorAnaliseLexica.get(2).Token == Token.NUMERO_DECIMAL) && (VetorAnaliseLexica.get(3).Token == Token.MULTIPLICACAO)
+                && (VetorAnaliseLexica.get(4).Token == Token.VARIAVEL) && (VetorAnaliseLexica.get(5).Token == Token.MULTIPLICACAO) && (VetorAnaliseLexica.get(6).Token == Token.VARIAVEL)) {
+            return true;
+        }
+
+        else return false;
 
 
     }
@@ -76,6 +113,26 @@ public class RegrasSintaticas {
         if ((VetorAnaliseLexica.get(0).Token == Token.PRINT) && (VetorAnaliseLexica.get(1).Token == Token.ABRE_PARENTESES &&
                 (VetorAnaliseLexica.get(2).Token == Token.STRING) && (VetorAnaliseLexica.get(3).Token == Token.FECHA_PARENTESES))){
             return true;
+        }
+        if ((VetorAnaliseLexica.get(0).Token == Token.PRINT) && (VetorAnaliseLexica.get(1).Token == Token.STRING &&
+                (VetorAnaliseLexica.get(2).Token == Token.VARIAVEL))){
+            return true;
+        }
+        if ((VetorAnaliseLexica.get(0).Token == Token.PRINT) && (VetorAnaliseLexica.get(1).Token == Token.STRING &&
+                (VetorAnaliseLexica.get(2).Token == Token.FECHA_PARENTESES))){
+            return true;
+        }
+        if ((VetorAnaliseLexica.get(0).Token == Token.PRINT) && (VetorAnaliseLexica.get(1).Token == Token.STRING_DE_FORMATO &&
+                (VetorAnaliseLexica.get(2).Token == Token.MATRIZ))){
+            return true;
+        }
+        if ((VetorAnaliseLexica.get(0).Token == Token.PRINT) && (VetorAnaliseLexica.get(1).Token == Token.PULA_LINHA &&
+                (VetorAnaliseLexica.get(2).Token == Token.FECHA_PARENTESES))){
+            return true;
+        }
+        if ((VetorAnaliseLexica.get(0).Token == Token.PRINT) && (VetorAnaliseLexica.get(1).Token == Token.STRING &&
+                (VetorAnaliseLexica.get(2).Token == Token.VIRGULA) && (VetorAnaliseLexica.get(3).Token == Token.VARIAVEL))){
+            return true;
         } else
             return false;
     }
@@ -88,6 +145,12 @@ public class RegrasSintaticas {
 
             return true;
         }
+
+        if ((VetorAnaliseLexica.get(0).Token == Token.SCANF) && (VetorAnaliseLexica.get(1).Token == Token.STRING_DE_FORMATO) ||
+                (VetorAnaliseLexica.get(0).Token == Token.SCANF_FUNCTION)) {
+
+            return true;
+        }
         return false;
     }
 
@@ -96,6 +159,47 @@ public class RegrasSintaticas {
 
         if ((VetorAnaliseLexica.get(0).Token == Token.COMENTARIO)) {
 
+            return true;
+        }
+        return false;
+    }
+
+    boolean SWITCH(ArrayList<ClassificacaoLexica> VetorAnaliseLexica) {
+
+        if ((VetorAnaliseLexica.get(0).Token == Token.SWITCH)) {
+            return true;
+        }
+        return false;
+    }
+
+    boolean CASE(ArrayList<ClassificacaoLexica> VetorAnaliseLexica) {
+
+        if ((VetorAnaliseLexica.get(0).Token == Token.CASE)) {
+            return true;
+        }
+        return false;
+    }
+    boolean BREAK(ArrayList<ClassificacaoLexica> VetorAnaliseLexica) {
+
+        if ((VetorAnaliseLexica.get(0).Token == Token.BREAK)) {
+            return true;
+        }
+        return false;
+    }
+
+    boolean DEFAULT(ArrayList<ClassificacaoLexica> VetorAnaliseLexica) {
+
+        if ((VetorAnaliseLexica.get(0).Token == Token.DEFAULT)) {
+            return true;
+        }
+        return false;
+    }
+
+    boolean WHILE(ArrayList<ClassificacaoLexica> VetorAnaliseLexica) {
+
+        if ((VetorAnaliseLexica.get(0).Token == Token.WHILE) && (VetorAnaliseLexica.get(1).Token == Token.ABRE_PARENTESES) && (VetorAnaliseLexica.get(2).Token == Token.VARIAVEL) && (VetorAnaliseLexica.get(3).Token == Token.MAIORQUE) &&
+                (VetorAnaliseLexica.get(4).Token == Token.NUMERO_INTEIRO) && (VetorAnaliseLexica.get(5).Token == Token.E) && (VetorAnaliseLexica.get(6).Token == Token.VARIAVEL) && (VetorAnaliseLexica.get(7).Token == Token.MENORQUE) &&
+                (VetorAnaliseLexica.get(8).Token == Token.NUMERO_INTEIRO) && (VetorAnaliseLexica.get(9).Token == Token.FECHA_PARENTESES)) {
             return true;
         }
         return false;
@@ -169,6 +273,30 @@ public class RegrasSintaticas {
             System.out.print("COMANDO_FOR - ");
             return true;
         }
+        if(CASE(VetorAnaliseLexica) == true){
+            System.out.print("CASE - ");
+            return true;
+        }
+        if(BREAK(VetorAnaliseLexica) == true){
+            System.out.print("BREAK - ");
+            return true;
+        }
+        if(WHILE(VetorAnaliseLexica) == true){
+            System.out.print("WHILE - ");
+            return true;
+        }
+        if(DEFAULT(VetorAnaliseLexica) == true){
+            System.out.print("DEFAULT - ");
+            return true;
+        }
+        if(DO(VetorAnaliseLexica) == true){
+            System.out.print("DO - ");
+            return true;
+        }
+        if(CLEAR(VetorAnaliseLexica) == true){
+            System.out.print("CLEAR - ");
+            return true;
+        }
         if(ABRE_CHAVE(VetorAnaliseLexica) == true){
             System.out.print("ABRE_CHAVE - ");
             return true;
@@ -195,6 +323,10 @@ public class RegrasSintaticas {
         }
         if(COMENTARIO(VetorAnaliseLexica) == true){
             System.out.print("COMENTARIO - ");
+            return true;
+        }
+        if(SWITCH(VetorAnaliseLexica) == true){
+            System.out.print("SWITCH - ");
             return true;
         }
         if(RETURN(VetorAnaliseLexica) == true){

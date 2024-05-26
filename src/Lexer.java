@@ -170,6 +170,12 @@ public class Lexer {
         else return false;
     }
 
+    boolean TokenPulaLinha(String Lexema){
+        if(Lexema.equals("\"\\n\""))
+            return true;
+        else return false;
+    }
+
     boolean TokenReturn(String Lexema){
         if(Lexema.equals("return 1;"))
             return true;
@@ -188,8 +194,14 @@ public class Lexer {
         else return false;
     }
 
+    boolean TokenMatriz(String Lexema){
+        if(Lexema.equals("matriz[3][3];") || (Lexema.equals(",matriz[linha][coluna]);")))
+            return true;
+        else return false;
+    }
+
     boolean TokenStringDeFormato(String Lexema){
-        if(Lexema.equals("\"%d\"") || (Lexema.equals("\"%f\"")))
+        if(Lexema.equals("\"%d\"") || (Lexema.equals("\"%f\"")) || (Lexema.equals("\"%d\\t\"")))
             return true;
         else return false;
     }
@@ -228,7 +240,7 @@ public class Lexer {
 
 
     boolean TokenScanF_Function(String Lexema){
-        if(Lexema.equals(",&lado1);") || Lexema.equals(",&lado2);") || Lexema.equals(",&lado3);") || Lexema.equals("&opcao);"))
+        if(Lexema.equals(",&lado1);") || Lexema.equals(",&lado2);") || Lexema.equals(",&lado3);") || Lexema.equals("&opcao);") || Lexema.equals("&matriz[linha][coluna]);"))
             return true;
         else return false;
     }
@@ -411,6 +423,10 @@ public class Lexer {
             ArrayListAnaliseLexica.add(new ClassificacaoLexica(Lexema, Token.IF, linha));
             return;
         }
+        if(TokenPulaLinha(Lexema)){
+            ArrayListAnaliseLexica.add(new ClassificacaoLexica(Lexema, Token.PULA_LINHA, linha));
+            return;
+        }
         if(TokenBreak(Lexema)){
             ArrayListAnaliseLexica.add(new ClassificacaoLexica(Lexema, Token.BREAK, linha));
             return;
@@ -421,6 +437,10 @@ public class Lexer {
         }
         if(TokenCase(Lexema)){
             ArrayListAnaliseLexica.add(new ClassificacaoLexica(Lexema, Token.CASE, linha));
+            return;
+        }
+        if(TokenMatriz(Lexema)){
+            ArrayListAnaliseLexica.add(new ClassificacaoLexica(Lexema, Token.MATRIZ, linha));
             return;
         }
         if(TokenElse(Lexema)){
@@ -627,6 +647,8 @@ public class Lexer {
         objTabelaDeSimbolos.adcionarSimbolo(Token.DEFAULT, "DEFAULT");
         objTabelaDeSimbolos.adcionarSimbolo(Token.CLEAR, "CLEAR");
         objTabelaDeSimbolos.adcionarSimbolo(Token.WHILE, "WHILE");
+        objTabelaDeSimbolos.adcionarSimbolo(Token.PULA_LINHA, "PULA_LINHA");
+        objTabelaDeSimbolos.adcionarSimbolo(Token.MATRIZ, "MATRIZ");
 
 
     }
