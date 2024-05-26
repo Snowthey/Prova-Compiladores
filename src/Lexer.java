@@ -251,7 +251,7 @@ public class Lexer {
                 if (parte.contains("=")) {
                     return true;
                 }
-                if (parte.contains("<") || parte.contains(">")) {
+                if (parte.contains("<") || parte.contains(">") || parte.contains("++")) {
                     return true;
                 }
             }
